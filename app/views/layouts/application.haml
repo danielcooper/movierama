@@ -18,7 +18,8 @@
         - if current_user
           %p.navbar-text.navbar-right
             Welcome back,
-            %span#username= current_user.name
+            %span#username
+              %a{ href: '/user'}= current_user.name
             = link_to session_path, method: :delete do
               Log out
         - else
@@ -34,5 +35,3 @@
             .alert.alert-info.mr-flash{class: "flash-#{name}"}= message
 
     = yield
-
-

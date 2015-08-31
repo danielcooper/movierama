@@ -1,0 +1,15 @@
+.container
+  .row
+    .col-md-12
+      .page-header
+        %h2 Edit your preferences
+  .row
+    .col-md-9
+      = form_tag user_path, { class: 'form', role: 'form' } do
+        %input{ type:'hidden', name:'_method', value:'put'}
+        .checkbox
+          %label{ for:  'notify-me' }
+            %input{ type: 'checkbox', name: 'notify_me', checked: current_user.notify_me?  }
+            Send an email when a user likes one of your films?
+        .form-group
+          = submit_tag 'Save', class: 'btn btn-primary'

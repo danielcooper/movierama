@@ -10,8 +10,10 @@ RSpec.describe 'vote on movies', type: :feature do
 
   before do
     author = User.create(
-      uid:  'null|12345',
-      name: 'Bob'
+      uid:        'null|12345',
+      name:       'Bob',
+      email:      'bob@example.com',
+      notify_me:  'true'
     )
     Movie.create(
       title:        'Empire strikes back',
@@ -36,7 +38,7 @@ RSpec.describe 'vote on movies', type: :feature do
     before { page.open }
 
     it 'can like' do
-      page.like('Empire strikes back')
+      expect{  page.like('Empire strikes back')}.to change { ActionMailer::Base.deliveries.count }.by(1)
       expect(page).to have_vote_message
     end
 
@@ -76,6 +78,3 @@ RSpec.describe 'vote on movies', type: :feature do
   end
 
 end
-
-
-

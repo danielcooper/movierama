@@ -11,5 +11,7 @@ Rails.application.routes.draw do
     resources :movies, only: %(index), controller: 'movies'
   end
 
+  resource :user
+
   root 'movies#index'
 end
